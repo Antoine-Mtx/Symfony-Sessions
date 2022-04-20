@@ -58,35 +58,39 @@
 		<div class="alert alert-success" role="alert">
 			Session complète
 		</div>
-	{% endif %}
+	{% else %}
 
 	<h2>Stagiaires non inscrits ({{ stagiairesNonInscrits | length }})</h2>
 
-	{% if (stagiairesNonInscrits | length) != 0 %}
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Stagiaire</th>
-					<th>Inscrire</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for stagiaire in stagiairesNonInscrits %}
+		{% if (stagiairesNonInscrits | length) != 0 %}
+			<table class="table table-striped">
+				<thead>
 					<tr>
-						<td>
-							<a href="{{ path('show_stagiaire', {'id':stagiaire.id}) }}">{{ stagiaire }}</a>
-						</td>
-						<td>
-							<a class="text-success" href="{{ path('addStagiaire_session', {'idStagiaire':stagiaire.id, 'idSession':session.id}) }}">
-								<i class="fa-solid fa-user-plus"></i>
-							</a>
-						</td>
+						<th>Stagiaire</th>
+						<th>Inscrire</th>
 					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	{% else %}
-		<p>Acune stagiaire non inscrit</p>
+				</thead>
+				<tbody>
+					{% for stagiaire in stagiairesNonInscrits %}
+						<tr>
+							<td>
+								<a href="{{ path('show_stagiaire', {'id':stagiaire.id}) }}">{{ stagiaire }}</a>
+							</td>
+							<td>
+								<a class="text-success" href="{{ path('addStagiaire_session', {'idStagiaire':stagiaire.id, 'idSession':session.id}) }}">
+									<i class="fa-solid fa-user-plus"></i>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+		<div class="alert alert-danger" role="alert">
+			Aucun stagiaire non inscrit
+		</div>
+		{% endif %}
+
 	{% endif %}
 
 
