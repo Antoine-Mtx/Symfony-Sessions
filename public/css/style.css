@@ -1,3 +1,7 @@
 ﻿table, thead, tr, tbody, th, td {
   text-align: center;
 }
+
+.nav-link {
+  color: white;
+}
